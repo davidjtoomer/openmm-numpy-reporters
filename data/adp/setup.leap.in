@@ -1,0 +1,20 @@
+# Load AMBER FF99SB forcefield for protein.
+source oldff/leaprc.ff99SB
+
+# Create sequence.
+peptide = sequence { ACE ALA NME }
+
+# Check peptide.
+check peptide
+
+# Report on net charge.
+charge peptide
+
+# Write to PDB
+savepdb peptide adp.pdb
+
+# Write topology and coordinate files.
+saveAmberParm peptide adp.prmtop adp.crd
+
+# Exit
+quit
