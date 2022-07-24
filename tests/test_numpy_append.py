@@ -31,7 +31,7 @@ def test_append_multiple_1D_arrays_same_shape(tmp_path) -> None:
     with NumpyAppendFile(filename) as file:
         for array in arrays:
             file.append(array)
-        
+
     actual = np.load(filename)
     expected = np.concatenate(arrays)
 
@@ -51,7 +51,7 @@ def test_append_multiple_1D_arrays_different_shapes(tmp_path) -> None:
     with NumpyAppendFile(filename) as file:
         for array in arrays:
             file.append(array)
-        
+
     actual = np.load(filename)
     expected = np.concatenate(arrays)
 
@@ -66,13 +66,13 @@ def test_append_many_1D_arrays(tmp_path) -> None:
     filename = tmp_path / 'test.npy'
     arrays = []
     for _ in range(100):
-        num_elements = np.random.randint(low = 10, high = 100)
+        num_elements = np.random.randint(low=10, high=100)
         arrays.append(np.random.rand(num_elements))
 
     with NumpyAppendFile(filename) as file:
         for array in arrays:
             file.append(array)
-        
+
     actual = np.load(filename)
     expected = np.concatenate(arrays)
 
@@ -108,7 +108,7 @@ def test_append_multiple_2D_arrays_same_shape(tmp_path) -> None:
     with NumpyAppendFile(filename) as file:
         for array in arrays:
             file.append(array)
-        
+
     actual = np.load(filename)
     expected = np.concatenate(arrays)
 
@@ -128,7 +128,7 @@ def test_append_multiple_2D_arrays_different_shapes(tmp_path) -> None:
     with NumpyAppendFile(filename) as file:
         for array in arrays:
             file.append(array)
-        
+
     actual = np.load(filename)
     expected = np.concatenate(arrays)
 
@@ -142,15 +142,15 @@ def test_append_many_2D_arrays(tmp_path) -> None:
     '''
     filename = tmp_path / 'test.npy'
     arrays = []
-    num_columns = np.random.randint(low = 10, high = 100)
+    num_columns = np.random.randint(low=10, high=100)
     for _ in range(100):
-        num_rows = np.random.randint(low = 10, high = 100)
+        num_rows = np.random.randint(low=10, high=100)
         arrays.append(np.random.rand(num_rows, num_columns))
 
     with NumpyAppendFile(filename) as file:
         for array in arrays:
             file.append(array)
-        
+
     actual = np.load(filename)
     expected = np.concatenate(arrays)
 
@@ -179,7 +179,7 @@ def test_append_integer_array(tmp_path) -> None:
     Append an integer array to a NumPy file.
     '''
     filename = tmp_path / 'test.npy'
-    array = np.random.randint(low = -1e6, high = 1e6, size = (10, 10))
+    array = np.random.randint(low=-1e6, high=1e6, size=(10, 10))
     with NumpyAppendFile(filename) as file:
         file.append(array)
 
@@ -252,7 +252,7 @@ def test_append_to_existing_file_incompatible_dtype(tmp_path) -> None:
     filename = tmp_path / 'test.npy'
     arrays = []
     arrays.append(np.random.rand(10, 10))
-    arrays.append(np.random.randint(low = -1e6, high = 1e6, size = (10, 10)))
+    arrays.append(np.random.randint(low=-1e6, high=1e6, size=(10, 10)))
 
     with NumpyAppendFile(filename) as file:
         file.append(arrays[0])
