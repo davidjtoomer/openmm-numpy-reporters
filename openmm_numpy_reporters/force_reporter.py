@@ -40,7 +40,10 @@ class ForceReporter:
         state : State
             The current state of the simulation.
         '''
-        forces = state.getForces(asNumpy=True).value_in_unit(kilocalories_per_mole / angstrom)
+        forces = state.getForces(
+            asNumpy=True).value_in_unit(
+            kilocalories_per_mole /
+            angstrom)
         with NumpyAppendFile(self.filename) as file:
             file.append(forces)
 

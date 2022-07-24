@@ -1,4 +1,3 @@
-import numpy as np
 from openmm import State
 from openmm.app import Simulation
 from openmm.unit import *
@@ -40,7 +39,7 @@ class PotentialEnergyReporter:
         potential_energy = state.getPotentialEnergy().value_in_unit(kilocalories_per_mole)
         with NumpyAppendFile(self.filename) as file:
             # potential_energies is a scalar - wrap it in a 1-element array
-            file.append(np.array([potential_energy]))
+            file.append([potential_energy])
 
     def describeNextReport(self, simulation: Simulation):
         '''
